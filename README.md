@@ -33,6 +33,8 @@ This is an API endpoint for a Contract Management system using Domain-Driven Des
 Domain Driven Design (DDD) has been used to implement the API end point. 
 
 ## 1. Application
+**Definition:**
+> Application - Application Layer: Defines the jobs of the API is supposed to do and directs the expressive domain objects to work out problems. The tasks this layer is responsible for are meaningful to the business or necessary for interaction with the application layers of other systems
 
 *Orca.API* contains the API Controller which is responsible for handling inputs. `GET` and `POST` methods have been implemented to store and retrieve Contracts.
 
@@ -40,13 +42,16 @@ Domain Driven Design (DDD) has been used to implement the API end point.
 
 **Definition:**
 > Domain - A place to define logic concepts, principles, patterns, and behaviors of data, including domain validation, calculations, and expressions for system operations.
+
 *Orca.Domain* contains the Entity models for `Contract`, `Product` and `Element`.
 
 ## 3. Infratructure
 
+**Definition:**
+> Infrastructure - The infrastructure layer is how the data that is initially held in domain entities (in memory) is persisted in databases or another persistent store.
+
 *Orca.Infrastructure* contains Repository layer interacting with **Azure Cache for Redis**.  
 
-**The solution is implemented using .NET 7**
 
 ### API Consumption
 Pull the code present in `master` and use **Visual Studio** to run. Set Startup Project as ***Orca.API***. It will open Swagger UI Page
@@ -68,19 +73,19 @@ POST http://localhost:`<port>`/api/Contract/
 
 3. `DELETE` Method
 ```
-DELETE http://localhost:`<port>`/api/Contract/<guid>
+DELETE http://localhost:<port>/api/Contract/<guid>
 ```
 ![image](https://github.com/AjitAccent/Orca_CodeChallenge/assets/164047233/03f80826-28b0-4e78-b950-d14e380218b2)
 
 ### Sample Requests -
 1. `POST` Request -
 
+URL
 ```
-POST http://localhost:`<port>`/api/Contract/
-```
+POST http://localhost:<port>/api/Contract/
 ```
 BODY
-```
+
 ```
 {
   "_id": "ea0d1554-3d34-4f6d-90da-fba626d1d6a0",
@@ -108,15 +113,15 @@ Success Response - `200 OK`
 
 2. `GET` Request -
 ```
-GET http://localhost:`<port>`/api/Contract/ea0d1554-3d34-4f6d-90da-fba626d1d6a0
+GET http://localhost:<port>/api/Contract/ea0d1554-3d34-4f6d-90da-fba626d1d6a0
 ```
 
 #### Responses -
 Success - `200 OK` with associated `Contract`
 
-2. `DELETE` Request -
+3. `DELETE` Request -
 ```
-DELETE http://localhost:`<port>`/api/Contract/ea0d1554-3d34-4f6d-90da-fba626d1d6a0
+DELETE http://localhost:<port>/api/Contract/ea0d1554-3d34-4f6d-90da-fba626d1d6a0
 ```
 
 #### Responses -
