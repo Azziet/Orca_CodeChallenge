@@ -10,13 +10,17 @@ namespace Orca.API.Services
         {
             _contractRepository = contractRepository;
         }
-        public async Task<Contract> GetContract(Guid id)
+        public Contract GetContract(Guid id)
         {
-            return await _contractRepository.GetContract(id);
+            return _contractRepository.GetContract(id);
         }
-        public async Task SaveContract(Contract contract)
+        public bool SaveContract(Contract contract)
         {
-            await _contractRepository.SaveContract(contract);
+            return _contractRepository.SaveContract(contract);
+        }
+        public bool RemoveContract(Guid id)
+        {
+            return _contractRepository.RemoveContract(id);
         }
     }
 }

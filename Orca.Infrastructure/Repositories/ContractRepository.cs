@@ -1,34 +1,28 @@
-﻿using System.Text.Json;
-using Orca.Domain.Entities;
+﻿using Orca.Domain.Entities;
 using Orca.Domain.Interfaces;
-using StackExchange.Redis;
 
 namespace Orca.Infrastructure.Repositories
 {
     public class ContractRepository : IContractRepository
     {
-        private readonly ConnectionMultiplexer _connectionMultiplexer;
-        private readonly string connectionString = "OrcaPOC.redis.cache.windows.net:6380,password=VOhIaAj4jgyosQGXGGOYUgc41iQbdZyWoAzCaDkM0UE=,ssl=True,abortConnect=False";
-        public ContractRepository()
+        private readonly IRedisCache _redisCache;
+        public ContractRepository(IRedisCache redisCache)
         {
-            _connectionMultiplexer = ConnectionMultiplexer.Connect(connectionString);
+            _redisCache = redisCache;
         }
-        public async Task<Contract> GetContract(Guid id)
+        public Contract GetContract(Guid id)
         {
-            var db = _connectionMultiplexer.GetDatabase();
-            var contract = await db.StringGetAsync(id.ToString());
-            if (contract.IsNullOrEmpty)
-            {
-                return new Contract();
-            }
-            return JsonSerializer.Deserialize<Contract>(contract);
+            return _redisCache.GetCacheData<Contract>(id.ToString());
         }
 
-        public async Task SaveContract(Contract contract)
+        public bool SaveContract(Contract contract)
         {
-            var db = _connectionMultiplexer.GetDatabase();
-            var contractToSave = JsonSerializer.Serialize(contract);
-            await db.StringSetAsync(contract._id.ToString(), contractToSave);
+           return _redisCache.SetCacheData(contract._id.ToString(), contract);
         }
-    }
+
+        public bool RemoveContract(Guid id)
+        {
+            return _redisCache.RemoveData(id.ToString());
+        }
+}
 }

@@ -4,7 +4,8 @@ namespace Orca.Domain.Interfaces
 {
     public interface IContractRepository
     {
-        Task<Contract> GetContract(Guid id);
-        Task SaveContract(Contract contract);
+        Contract GetContract(Guid id);
+        bool SaveContract(Contract contract);
+        bool RemoveContract(Guid id);
     }
 }
