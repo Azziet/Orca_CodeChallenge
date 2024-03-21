@@ -1,4 +1,4 @@
-# Orca Coding Challenge - Contract Management system - .Net Core Web API
+# Orca Coding Challenge - Contract Management system [.Net Core Web API]
 
 ## Overview
 This is an API endpoint for a Contract Management system using Domain-Driven Design (DDD) principles. 
@@ -36,7 +36,7 @@ Domain Driven Design (DDD) has been used to implement the API end point.
 **Definition:**
 > Application - Application Layer: Defines the jobs of the API is supposed to do and directs the expressive domain objects to work out problems. The tasks this layer is responsible for are meaningful to the business or necessary for interaction with the application layers of other systems
 
-*Orca.API* contains the API Controller which is responsible for handling inputs. `GET` and `POST` methods have been implemented to store and retrieve Contracts.
+*Orca.API* contains the API Controller which is responsible for handling inputs. `GET`, `DELETE` and `POST` methods have been implemented to store and retrieve Contracts.
 
 ## 2. Domain
 
