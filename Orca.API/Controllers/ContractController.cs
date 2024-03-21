@@ -16,12 +16,14 @@ namespace Orca.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetContract(Guid id)
         {
+            Dictionary<string, object> contracts = new();
             var contract = _contractService.GetContract(id);
+            contracts.Add("Contracts", contract);
             if (contract == null)
             {
                 return NotFound();
             }
-            return Ok(contract);
+            return Ok(contracts);
         }
 
         [HttpPost]
