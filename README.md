@@ -1,4 +1,4 @@
-# Orca Coding Challenge - Contract Management system [.Net Core Web API]
+# Contract Management system [.Net Core Web API]
 
 ## Overview
 This is an API endpoint for a Contract Management system using Domain-Driven Design (DDD) principles. 
